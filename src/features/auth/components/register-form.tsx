@@ -1,17 +1,30 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Form , FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import  Link  from "next/link";
-import { cn } from "@/lib/utils";
-
+import { authClient } from "@/lib/auth-client";
 
 const registerSchema = z.object({
     email: z.email("Please enter a valid email address"),
@@ -23,25 +36,47 @@ const registerSchema = z.object({
     path: ["confirmPassword"]
 });
 
-type RegisterFormValues = z.infer<typeof RegisterForm>;
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export function RegisterForm() {
     const router = useRouter();
 
-    const form = useForm({
+    const form = useForm<RegisterFormValues>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
             email: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
         },
     });
 
     const onSubmit = async (values: RegisterFormValues) => {
-        console.log(values);
+        try{
+        await authClient.signUp.email(
+            {
+                name: values.email,
+                email: values.email,
+                password: values.password,
+                callbackURL:"/",
+            },
+            {
+                onSuccess: () => {
+                    
+                    router.push("/");
+                },
+                onError: (ctx) => {
+                    console.error("AUTH ERROR:", ctx)
+                    toast.error(ctx.error.message)
+                }
+            }
+        )
+    }
+        catch (err) {
+    console.error("FETCH FAILED:", err)
+  }
     };
 
-    const isPending = form.formState.isSubmitting
+    const isPending = form.formState.isSubmitting;
 
     return (
         <div className="flex flex-col gap-6">
@@ -120,7 +155,7 @@ export function RegisterForm() {
                                                     <FormLabel>Confirm password</FormLabel>
                                                     <FormControl>
                                                         <Input
-                                                            type="email"
+                                                            type="password"
                                                             placeholder="********"
                                                             {...field}
                                                         />
