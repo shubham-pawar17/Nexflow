@@ -1,0 +1,36 @@
+<svg width="460" height="140" viewBox="0 0 460 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradWave" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF7A59"/>
+      <stop offset="100%" stop-color="#FFB38A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Wave Icon -->
+  <g transform="translate(30,40)">
+    <path d="M10 40 
+             C30 10, 70 10, 90 40 
+             S150 70, 170 40"
+          fill="none"
+          stroke="url(#gradWave)"
+          stroke-width="7"
+          stroke-linecap="round"/>
+  </g>
+
+  <!-- Brand Name -->
+  <text x="220" y="75"
+        font-family="Inter, Poppins, sans-serif"
+        font-size="44"
+        font-weight="700"
+        fill="#111">
+    Nex<tspan fill="#FF7A59">flow</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="220" y="105"
+        font-family="Inter, sans-serif"
+        font-size="14"
+        fill="#666">
+    Automate your workflows
+  </text>
+</svg>
