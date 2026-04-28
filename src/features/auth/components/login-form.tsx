@@ -9,19 +9,19 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
@@ -29,7 +29,7 @@ import { authClient } from "@/lib/auth-client";
 
 const loginSchema = z.object({
     email: z.email("Please enter a valid email address"),
-    password: z.string().min(1, "Password is required")
+     password: z.string().min(1, "Password is required")
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
