@@ -2,12 +2,24 @@ import {withSentryConfig} from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   /* config options here */
+  async redirects() {
+    return [
+      {
+        source:"/",
+        destination: "/workflows",
+        permanent: false,
+      }
+    ];
+    
+  }
 };
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
+
 
   org: "nexflow-5o",
 
