@@ -14,8 +14,8 @@ const Page = async () => {
         <WorkflowsContainer>
             <HydarteClient>
                 <ErrorBoundary fallback={<p>Error!</p>}>
-                    <Suspense fallback={<p>...Loading</p>}>
-                        <WorkflowsList />
+                    <Suspense fallback={<p>Loading...</p>}>
+                        <WorkflowsList/>
                     </Suspense>
                 </ErrorBoundary>
             </HydarteClient>

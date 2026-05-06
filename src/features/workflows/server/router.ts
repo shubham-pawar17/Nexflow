@@ -1,7 +1,7 @@
 import prisma from "@/lib/db";
 import { generateSlug } from "random-word-slugs";
 import { createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
-import z, { string } from "zod";
+import z from "zod";
 
 export const workflowsRouter = createTRPCRouter({
     create: premiumProcedure.mutation(({ ctx }) =>{
@@ -23,7 +23,7 @@ export const workflowsRouter = createTRPCRouter({
         });
     }),
     updateName: protectedProcedure
-    .input(z.object({id: string() , name: z.string().min(1) }))
+    .input(z.object({id: z.string() , name: z.string().min(1) }))
     .mutation(({ ctx , input}) => {
         return prisma.workflow.update({
             where: {id: input.id , userId: ctx.auth.user.id},

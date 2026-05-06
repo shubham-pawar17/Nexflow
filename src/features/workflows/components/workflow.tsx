@@ -37,7 +37,7 @@ export const WorkflowHeader = ({ disabled }: { disabled?: boolean }) => {
             {modal}
             <EntityHeader
                 title="Workflows"
-                description="Create And MAnage Your Workflows"
+                description="Create And Manage Your Workflows"
                 onNew={handleCreate}
                 newButtonLabel="New Workflow"
                 disabled={disabled}
@@ -61,5 +61,5 @@ export const WorkflowsContainer = ({
         >
             {children}
         </EntityContainer>
-    )
-}
+    );
+};

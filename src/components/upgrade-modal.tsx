@@ -6,13 +6,14 @@ import { AlertDialogDescription , AlertDialogTitle , AlertDialogHeader, AlertDia
 interface UpgardeModalProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-}
+};
 
 export const UpgradeModal = ({
-    open, onOpenChange
+    open,
+    onOpenChange
 }: UpgardeModalProps) => {
     return(
-        <AlertDialog>
+        <AlertDialog open={open} onOpenChange={onOpenChange}>
         <AlertDialogContent>
             <AlertDialogHeader>
                 <AlertDialogTitle>
