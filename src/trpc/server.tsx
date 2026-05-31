@@ -27,7 +27,7 @@ export function prefetch<T extends ReturnType<TRPCQueryOptions<any>>>(
   }
 }
 
-export function HydarteClient(props: { children: React.ReactNode}) {
+export function HydrateClient(props: { children: React.ReactNode}) {
   const queryClient = getQueryClient();
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
