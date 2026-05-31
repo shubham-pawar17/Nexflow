@@ -5,7 +5,7 @@ const Layout= ({ children } : {children: React.ReactNode; }) => {
     return (
         <SidebarProvider>
             <AppSidebar/>
-            <SidebarInset className="bg-accent/20">
+            <SidebarInset className="bg-accent/20 flex flex-col h-screen">
                 {children}
             </SidebarInset>
         </SidebarProvider>

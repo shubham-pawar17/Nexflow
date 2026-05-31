@@ -2,7 +2,7 @@ import { Editor, EditorError, EditorLoading } from "@/features/editor/components
 import { EditorHeader } from "@/features/editor/components/editor-header";
 import { prefetchWorkflow } from "@/features/workflows/server/prefetch";
 import { requireAuth } from "@/lib/auth-utils";
-import { HydarteClient } from "@/trpc/server";
+import { HydrateClient } from "@/trpc/server";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -21,7 +21,7 @@ const Page = async ({ params }: PageProps) => {
     prefetchWorkflow(workflowId);
 
     return (
-        <HydarteClient>
+        <HydrateClient>
             <ErrorBoundary fallback={<EditorError />}>
                 <Suspense fallback={<EditorLoading />}>
                     <EditorHeader workflowId={workflowId} />
@@ -30,7 +30,7 @@ const Page = async ({ params }: PageProps) => {
                         </main>
                 </Suspense>
             </ErrorBoundary>
-        </HydarteClient>
+        </HydrateClient>
     )
 };
 

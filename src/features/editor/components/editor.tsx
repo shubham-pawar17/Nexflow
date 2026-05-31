@@ -21,6 +21,8 @@ import { ErrorView, LoadingView } from "@/components/entity-components";
 import { useSuspenseWorkflow } from "@/features/workflows/hooks/use-workflows";
 import { nodeComponents } from '@/config/node-components';
 import { AddNodeButton } from './add-node-button';
+import { useSetAtom } from 'jotai';
+import { editorAtom } from '../store/atom';
 
 
 
@@ -35,6 +37,8 @@ export const EditorError = () => {
 export const Editor = ({ workflowId }: { workflowId: string }) => {
 
     const { data: workflow } = useSuspenseWorkflow(workflowId);
+
+    const setEditor = useSetAtom(editorAtom);
 
     const [nodes, setNodes] = useState<Node[]>(workflow.nodes);
     const [edges, setEdges] = useState<Edge[]>(workflow.edges);
@@ -54,7 +58,7 @@ export const Editor = ({ workflowId }: { workflowId: string }) => {
     )
 
     return (
-        <div className='size-full'>
+        <div className="size-full">
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -62,7 +66,13 @@ export const Editor = ({ workflowId }: { workflowId: string }) => {
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
                 fitView
+                onInit={setEditor}
                 nodeTypes={nodeComponents}
+                // snapGrid={[10,10]}
+                // snapToGrid
+                // panOnScroll
+                // panOnDrag={false}
+                // selectionOnDrag
                 // proOptions={{
                 //     hideAttribution: true,
                 // }}
