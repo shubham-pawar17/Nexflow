@@ -1,6 +1,6 @@
+# mprocs.yaml
 procs:
-  inngest:
-    cmd: ["npm", "run", "inngest:dev"]
-
   next:
-    cmd: ["npm", "run", "dev"]
+    shell: "npm run dev"
+  inngest:
+    shell: "npm run inngest:dev"
