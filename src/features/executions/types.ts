@@ -1,0 +1,17 @@
+import type { GetStepTools, Inngest } from "inngest";
+
+export type workflowContext = Record<string, unknown>;
+
+export type StepTools = GetStepTools<Inngest.Any>;
+
+export interface NodeExecutorParams<TData = Record<string, unknown>> {
+    data: TData;
+    nodeId: string;
+    context: workflowContext;
+    step: StepTools;
+    //publish: todo add realtime later
+};
+
+export type NodeExecutor<TData = Record<string, unknown>> = (
+    params: NodeExecutorParams<TData>,
+) => Promise<workflowContext>;
